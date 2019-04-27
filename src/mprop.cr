@@ -66,34 +66,13 @@ class MPropSearch < LiveView
   end
 
   def fetch_results
-    Property.all <<-SQL, 
-      WHERE property.bedrooms >= $1
-      AND   property.bedrooms <= $2
-      AND   property.bathrooms >= $3
-      AND   property.bathrooms <= $4
-      AND   property.area >= $5
-      AND   property.area <= $6
-      AND   property.parking_type = $7
-      AND   (
-        CASE $8
-        WHEN '' THEN TRUE
-        ELSE to_tsvector('english', property.address) @@ to_tsquery('english', $8)
-        END
-      )
-
-      ORDER BY assessment DESC
-      LIMIT 25
-    SQL
-      [
-        @min_bedrooms, # $1
-        @max_bedrooms, # $2
-        @min_bathrooms, # $3
-        @max_bathrooms, # $4
-        @min_area, # $5
-        @max_area, # $6
-        @parking_type_search, # $7
-        @address_search, # $8
-      ]
+    Property.search(
+      bedrooms: @min_bedrooms..@max_bedrooms,
+      bathrooms: @min_bathrooms..@max_bathrooms,
+      area: @min_area..@max_area,
+      parking_type: @parking_type_search,
+      address: @address_search,
+    )
   rescue ex
     pp ex
     raise ex
