@@ -1,0 +1,21 @@
+name: mprop
+version: 0.1.0
+
+authors:
+  - Jamie Gaskins <jgaskins@gmail.com>
+
+targets:
+  mprop:
+    main: src/mprop.cr
+
+dependencies:
+  live_view:
+    github: jgaskins/live_view
+  granite:
+    github: amberframework/granite
+  pg:
+    github: will/crystal-pg
+
+crystal: 0.28.0
+
+license: MIT

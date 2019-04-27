@@ -1,0 +1,68 @@
+<h1>Milwaukee Property Search</h1>
+<p>
+  A website that allows filtering by some attributes from Milwaukee's
+  <a href="http://city.milwaukee.gov/DownloadTabularData3496.htm?docid=3496">
+    Master Property Record
+  </a>
+</p>
+
+<form accept-charset="UTF-8" action="#" method="post">
+  <div class="row mb-2">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_text_query">Address Search</label>
+    <input class="form-control col-sm-10" id="params_text_query" name="params[text_query]" type="search" live-input="change-address">
+  </div>
+  <div class="row mb-2">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_min_bath">Min bath</label>
+    <input class="form-control col-sm-2" id="params_min_bath" type="number" live-input="change-min-bath">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_max_bath">Max bath</label>
+    <input class="form-control col-sm-2" id="params_max_bath" type="number" live-input="change-max-bath">
+  </div>
+  <div class="row mb-2">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_min_bed">Min bed</label>
+    <input class="form-control col-sm-2" id="params_min_bed" name="params[min_bed]" type="number" live-input="change-min-bed">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_max_bed">Max bed</label>
+    <input class="form-control col-sm-2" id="params_max_bed" name="params[max_bed]" type="number" live-input="change-max-bed">
+  </div>
+  <div class="row mb-2">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_min_area">Min area</label>
+    <input class="form-control col-sm-2" id="params_min_area" type="number" live-input="change-min-area" />
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_max_area">Max area</label>
+    <input class="form-control col-sm-2" id="params_max_area" type="number" live-input="change-max-area" />
+  </div>
+  <div class="row mb-2">
+    <label class="col-sm-2 justify-content-start form-control-label" for="params_parking_type">Parking type</label>
+    <select class="form-control col-sm-2" id="params_parking_type" name="params[parking_type]" live-change="change-parking">
+      <option value="" selected=""></option>
+      <option value="A">Attached Garage</option>
+      <option value="D">Detached Garage</option>
+      <option value="AD">Attached/Detached Garage</option>
+    </select>
+  </div>
+</form>
+
+<table class="table table-hover mt-2">
+  <thead>
+    <tr>
+      <th>Tax Key</th>
+      <th>Address</th>
+      <th>Bedrooms</th>
+      <th>Bathrooms</th>
+      <th>Property Area</th>
+      <th>Parking Type</th>
+      <th>Assessment</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @results.each do |property| %>
+      <tr>
+        <td><a href="/properties/<%= property.tax_key %>"><%= property.tax_key %></a></td>
+        <td><%= property.address %></td>
+        <td><%= property.bedrooms %></td>
+        <td><%= property.bathrooms %></td>
+        <td><%= property.area %></td>
+        <td><%= property.parking_type %></td>
+        <td><%= property.assessment %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
