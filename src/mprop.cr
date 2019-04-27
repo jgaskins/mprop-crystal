@@ -21,6 +21,12 @@ class MPropSearch < LiveView
     @results = fetch_results
   end
 
+  def mount(socket)
+    # Heroku seems to be killing our connections after a minute idle, so let's
+    # remind it that we like this client and want to keep it around.
+    every(30.seconds) { socket.ping }
+  end
+
   def handle_event(message, data, socket)
     start = Time.now
 
