@@ -59,9 +59,9 @@
         <td><%= property.address %></td>
         <td><%= property.bedrooms %></td>
         <td><%= property.bathrooms %></td>
-        <td><%= property.area %></td>
+        <td><%= property.area.try(&.format) %></td>
         <td><%= property.parking_type %></td>
-        <td><%= property.assessment %></td>
+        <td><%= property.assessment.try(&.format) %></td>
       </tr>
     <% end %>
   </tbody>
