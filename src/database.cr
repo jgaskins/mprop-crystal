@@ -4,6 +4,7 @@ Granite::Adapters << Granite::Adapter::Pg.new({
   name: "postgres",
   url: ENV["DATABASE_URL"],
 })
+Granite.settings.logger = Logger.new(STDOUT)
 
 class Property < Granite::Base
   adapter postgres
@@ -56,7 +57,7 @@ class Property < Granite::Base
         area.begin, # $5
         area.end, # $6
         parking_type, # $7
-        address, # $8
+        address.split.join(" & "), # $8
       ]
   end
 end
