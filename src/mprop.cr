@@ -35,15 +35,15 @@ class MPropSearch < LiveView
     when "change-min-bath" then @min_bathrooms = number(data)
     when "change-max-bath"
       @max_bathrooms = number(data)
-      @max_bathrooms = DEFAULT_MAX if @max_bathrooms == 0
+      @max_bathrooms = DEFAULT_MAX if @max_bathrooms <= 0
     when "change-min-bed" then @min_bedrooms = number(data)
     when "change-max-bed"
       @max_bedrooms = number(data)
-      @max_bedrooms = DEFAULT_MAX if @max_bedrooms == 0
+      @max_bedrooms = DEFAULT_MAX if @max_bedrooms <= 0
     when "change-min-area" then @min_area = number(data)
     when "change-max-area"
       @max_area = number(data)
-      @max_area = DEFAULT_MAX if @max_area == 0
+      @max_area = DEFAULT_MAX if @max_area <= 0
     when "change-parking" then @parking_type_search = string(data)
     end
 
