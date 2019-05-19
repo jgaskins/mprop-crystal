@@ -27,12 +27,9 @@ class Property < Granite::Base
     address : String,
   )
     all <<-SQL,
-      WHERE property.bedrooms >= $1
-      AND   property.bedrooms <= $2
-      AND   property.bathrooms >= $3
-      AND   property.bathrooms <= $4
-      AND   property.area >= $5
-      AND   property.area <= $6
+      WHERE property.bedrooms BETWEEN $1 AND $2
+      AND   property.bathrooms BETWEEN $3 AND $4
+      AND   property.area BETWEEN $5 AND $6
       AND (
         CASE $7
         WHEN '' THEN TRUE
