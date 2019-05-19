@@ -20,7 +20,7 @@ Then we load it into the database. We'll need the DB URL so we'll export it to o
 _Note: This takes quite a while to load_
 
     export DATABASE_URL=postgres://localhost/mprop
-    crystal seed_db.cr
+    crystal seed_db.cr mprop.csv
 
 Then we run the app. By default it listens on port 9393, but you can change it with the `PORT` shell environment variable.
 
